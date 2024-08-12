@@ -1,3 +1,22 @@
+<div class="row">
+  <div class="col-4">
+    <button
+      class="btn btn-success btn-lg m-3"
+      (click)="prevPage()"
+      [disabled]="page <= 1"
+    >
+      Prev
+    </button>
+    <button
+      class="btn btn-success btn-lg"
+      (click)="nextPage()"
+      [disabled]="page >= totalPgaes"
+    >
+      Next
+    </button>
+  </div>
+</div>
+
 <div class="row row-cols-1 row-cols-md-3 g-4">
   @for (product of productList; track product.id) {
   <div class="col">
@@ -15,22 +34,15 @@
       </div>
       }
       <div class="card-body">
-        <h5
-          class="card-title"
-          [ngClass]="product.price > 20 ? 'myfont' : 'text-bg-info'"
-        >
+        <h5 class="card-title">
           {{ product.title }}
         </h5>
+        <a
+          class="btn btn-success"
+          [routerLink]="['/productdetails', product.id]"
+          >Show Details</a
+        >
       </div>
-      <!-- condtional rendering -->
-      <p
-        [ngStyle]="{
-          color: product.category == 'jewelery' ? 'black' : 'white',
-          'background-color': 'blue'
-        }"
-      >
-        {{ product.description }}
-      </p>
     </div>
   </div>
   }@empty {
